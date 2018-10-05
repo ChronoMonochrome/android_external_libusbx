@@ -9,6 +9,7 @@ LOCAL_SRC_FILES:= \
  sync.c \
  os/linux_usbfs.c \
  os/threads_posix.c \
+ os/linux_netlink.c \
  os/poll_posix.c \
  hotplug.c
 
@@ -17,10 +18,10 @@ LOCAL_C_INCLUDES += \
  external/libusbx/libusb/ \
  external/libusbx/libusb/os
 
-LOCAL_CFLAGS := -D_SHARED_LIBRARY_
+LOCAL_CFLAGS := -D_SHARED_LIBRARY_ -DHAVE_LINUX_NETLINK_H -DHAVE_LINUX_FILTER_H -DHAVE_SYS_SOCKET_H
 LOCAL_MODULE_TAGS:= optional
 LOCAL_MODULE:= libusbx
-#include $(BUILD_STATIC_LIBRARY)
+include $(BUILD_STATIC_LIBRARY)
 
 include $(CLEAR_VARS)
 
